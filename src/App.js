@@ -8,7 +8,7 @@ const Project = ({ url, title, shortDescription, avatar, webStack }) => (
   <article className="media">
     <figure className="media-left">
       <p className="image is-64x64">
-        <img src={avatar}/>
+        <img src={avatar} alt="Project avatar"/>
       </p>
     </figure>
     <div className="media-content">
@@ -26,7 +26,7 @@ const Project = ({ url, title, shortDescription, avatar, webStack }) => (
 
 const AllProjects = ({ projects, source }) => (
   <Fragment>
-    {projects.length != 0 && <h2 className="subtitle is-size-6">{source}</h2>}
+    {projects.length !== 0 && <h2 className="subtitle is-size-6">{source}</h2>}
     {projects.map((prj, i) => <Project key={i} {...prj}/>)}
   </Fragment>
 );

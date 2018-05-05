@@ -29,9 +29,7 @@ export const allReducer = handleAction(
     if (error) {
       return;
     }
-    payload.
-      filter(usrPrj => draft.indexOf(usrPrj.user) === -1).
-      forEach(({ user }) => draft.push(user));
+    payload.filter(usrPrj => draft.indexOf(usrPrj.user) === -1).forEach(({ user }) => draft.push(user));
   }),
   []
 );
@@ -44,9 +42,7 @@ export const withProjectReducer = handleAction(
     if (error) {
       return;
     }
-    payload.
-    filter(usrPrj => draft.indexOf(usrPrj.user) === -1 && hasProjects(usrPrj)).
-    forEach(({ user }) => draft.push(user));
+    payload.filter(usrPrj => draft.indexOf(usrPrj.user) === -1 && hasProjects(usrPrj)).forEach(({ user }) => draft.push(user));
   }),
   []
 );
