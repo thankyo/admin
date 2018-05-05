@@ -1,4 +1,6 @@
+import { combineReducers } from "redux";
 import { handleAction, createActions } from "redux-actions";
+import produce from "immer";
 
 export const actions = createActions({
   "PROJECT": {
@@ -10,8 +12,47 @@ export const actions = createActions({
   }
 });
 
-export const projectReducer = handleAction(
+export const byIdReducer = handleAction(
   actions.project.get,
-  (state, { type, payload }) => payload,
+  produce((draft, { type, payload, error }) => {
+    if (error) {
+      return
+    }
+    payload.forEach((usrPrj) => draft[usrPrj.user] = usrPrj)
+  }),
+  {}
+);
+
+export const allReducer = handleAction(
+  actions.project.get,
+  produce((draft, { type, payload, error }) => {
+    if (error) {
+      return;
+    }
+    payload.
+      filter(usrPrj => draft.indexOf(usrPrj.user) === -1).
+      forEach(({ user }) => draft.push(user));
+  }),
   []
 );
+
+const hasProjects = (usrPrj) => usrPrj.installed.length || usrPrj.google.length || usrPrj.dibs.length || usrPrj.tumblr.length
+
+export const withProjectReducer = handleAction(
+  actions.project.get,
+  produce((draft, { type, payload, error }) => {
+    if (error) {
+      return;
+    }
+    payload.
+    filter(usrPrj => draft.indexOf(usrPrj.user) === -1 && hasProjects(usrPrj)).
+    forEach(({ user }) => draft.push(user));
+  }),
+  []
+);
+
+export const projectReducer = combineReducers({
+  byId: byIdReducer,
+  all: allReducer,
+  withProject: withProjectReducer
+});
