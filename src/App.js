@@ -13,12 +13,12 @@ const Project = ({ url, title, shortDescription, avatar, webStack }) => (
     </figure>
     <div className="media-content">
       <div className="content">
-        <p>
+        <div>
           <a href={url}><strong>{url}</strong></a>
           <strong>{webStack}</strong><br/>
           <h3 className="title is-size-5">{title}</h3>
           {shortDescription}
-        </p>
+        </div>
       </div>
     </div>
   </article>
@@ -46,16 +46,26 @@ const UserProject = ({ user, google, tumblr, email, dibs, installed }) => (
 );
 
 class App extends Component {
+  state = { isLoading: true };
+
   componentWillMount() {
-    this.props.get();
+
+    this.props.get().then(() => this.setState({ isLoading: false }));
   }
 
   render() {
+    if (this.state.isLoading) {
+      return (
+        <div>
+          <div className="pageloader is-active"/>
+        </div>
+      );
+    }
     return (
       <section className="section">
         <div className="container">
           <h1 className="title">Projects</h1>
-          {this.props.projects.map((prj, i) => <UserProject key={i} {...prj}/>)}
+          {this.props.projects.map((usrPrj, i) => <UserProject key={usrPrj.user} {...usrPrj}/>)}
         </div>
       </section>
     );
