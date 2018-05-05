@@ -31,7 +31,7 @@ const AllProjects = ({ projects, source }) => (
   </Fragment>
 );
 
-const withoutInstalled = (projects, installed) => projects.filter(({ url }) => installed.some(prj => prj.url === url))
+const withoutInstalled = (projects, installed) => projects.filter(({ url }) => !installed.some(prj => prj.url === url))
 
 const UserProject = ({ user, google, tumblr, email, dibs, installed }) => (
   <Fragment>
