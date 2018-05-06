@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { actions } from "./reducers/user";
 import './App.css';
 
-const User = ({ _id, avatar, firstName, lastName, email }) => (
+const User = ({ id, avatar, firstName, lastName, email }) => (
   <article className="media">
     <figure className="media-left">
       <p className="image is-64x64">
@@ -14,8 +14,8 @@ const User = ({ _id, avatar, firstName, lastName, email }) => (
     <div className="media-content">
       <div className="content">
         <div>
-          <strong>{firstName} {lastName}</strong>
-          <strong>{_id}</strong>
+          <a href={`/user/${id}`}><strong>{id}</strong></a><br/>
+          <strong>{firstName} {lastName}</strong><br/>
           <strong>{email}</strong>
         </div>
       </div>

@@ -5,10 +5,10 @@ const Navbar = () => (
   <nav className="navbar is-primary">
     <div className="navbar-menu container">
       <div className="navbar-start">
-        <NavLink className="navbar-item" activeClassName="navbar-item is-active" exact to="/">
+        <NavLink className="navbar-item" activeClassName="navbar-item is-active" exact to="/admin">
           Users
         </NavLink>
-        <NavLink className="navbar-item" activeClassName="navbar-item is-active" to="/project">
+        <NavLink className="navbar-item" activeClassName="navbar-item is-active" to="/admin/project">
           Projects
         </NavLink>
       </div>
