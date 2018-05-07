@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actions } from "./reducers/user";
@@ -39,11 +39,9 @@ class Users extends Component {
       );
     }
     return (
-      <section className="section">
-        <div className="container">
-          {this.props.users.map((usr) => <User key={usr.id} {...usr}/>)}
-        </div>
-      </section>
+      <Fragment>
+        {this.props.users.map((usr) => <User key={usr.id} {...usr}/>)}
+      </Fragment>
     );
   }
 }

@@ -1,11 +1,12 @@
 import { combineReducers } from "redux";
 import { handleAction, createActions } from "redux-actions";
 import produce from "immer";
+import api from "./api";
 
 export const actions = createActions({
   "PROJECT": {
     "GET": async () => {
-      const fProjects = fetch("/api/v1/thank/admin/project").then(res => res.json());
+      const fProjects = api.getProjects();
       const projects = await fProjects;
       return projects;
     }

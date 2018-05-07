@@ -62,11 +62,9 @@ class App extends Component {
       );
     }
     return (
-      <section className="section">
-        <div className="container">
-          {this.props.projects.map((usrPrj, i) => <UserProject key={usrPrj.user} {...usrPrj}/>)}
-        </div>
-      </section>
+      <Fragment>
+        {this.props.projects.map((usrPrj, i) => <UserProject key={usrPrj.user} {...usrPrj}/>)}
+      </Fragment>
     );
   }
 }

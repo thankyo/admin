@@ -1,11 +1,12 @@
 import { combineReducers } from "redux";
 import { handleAction, createActions } from "redux-actions";
 import produce from "immer";
+import api from "./api";
 
 export const actions = createActions({
   "USER": {
     "GET": async () => {
-      const fUsers = fetch("/api/v1/user/admin/user").then(res => res.json());
+      const fUsers = api.getUsers();
       const users = await fUsers;
       return users;
     }
